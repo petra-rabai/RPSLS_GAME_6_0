@@ -8,8 +8,11 @@ namespace RPSLS_GAME_6_0
 {
     internal class Game
     {
-        public void Initialize()
+        public void Initialize(UIContent uIContent, Navigation navigation, Player player)
         {
+            uIContent.WriteUIToTheConsole();
+            navigation.SetNavigationKey(player);
+            navigation.SetChoosedMenu();
 
         }
     }

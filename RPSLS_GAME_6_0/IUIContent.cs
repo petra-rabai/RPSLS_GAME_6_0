@@ -13,6 +13,7 @@ namespace RPSLS_GAME_6_0
         string UINavigationMessage { get; set; }
         string UIWaitForInputMessage { get; set; }
         string UIHitValidKeyMessage { get; set; }
+        void WriteUIToTheConsole();
 
     }
 }

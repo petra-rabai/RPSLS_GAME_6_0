@@ -21,13 +21,22 @@ namespace RPSLS_GAME_6_0
 
         public void ChoosedMenuKeysValidation()
         {
-            if (!MenuItems.ContainsKey(NavigationKey))
+            foreach (KeyValuePair<char, string> gameMenupair in MenuItems)
             {
-                foreach (KeyValuePair<char, string> gameMenupair in MenuItems)
-                {
-                    Console.WriteLine(gameMenupair.Key + " - " + gameMenupair.Value + "\n");
-                }
+                Console.WriteLine(gameMenupair.Key + " - " + gameMenupair.Value + "\n");
+            }   
+        }
+
+        public char SetNavigationKey(Player player)
+        {
+            NavigationKey = player.ReadPlayerKeyFromTheConsole();
+            while (!MenuItems.ContainsKey(NavigationKey))
+            {
+                ChoosedMenuKeysValidation();
+                NavigationKey = player.ReadPlayerKeyFromTheConsole();
             }
+
+            return NavigationKey;
         }
 
         public string SetChoosedMenu()
@@ -35,12 +44,6 @@ namespace RPSLS_GAME_6_0
             ChoosedMenu = MenuItems[NavigationKey];
 
             return ChoosedMenu;
-        }
-
-        public char SetNavigationKey(Player player)
-        {
-            NavigationKey = player.ReadPlayerKeyFromTheConsole();
-            return NavigationKey;
         }
 
     }

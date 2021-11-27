@@ -59,6 +59,11 @@ namespace RPSLS_GAME_6_0
         public char SetPlayerKey(Player player)
         {
             PlayerKey = player.ReadPlayerKeyFromTheConsole();
+            while (!GameItems.ContainsKey(PlayerKey))
+            {
+                ChoosedGameItemsKeysValidation();
+                PlayerKey = player.ReadPlayerKeyFromTheConsole();
+            }
             return PlayerKey;
         }
 
