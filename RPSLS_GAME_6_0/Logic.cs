@@ -46,6 +46,12 @@ namespace RPSLS_GAME_6_0
           };
         public Tuple<string, string> ComperableItems { get; set ; }
         public string Winner { get; set; }
+        public Dictionary<int, string> GameMode { get; set; } = new Dictionary<int, string>
+        {
+            [1] = "Human Vs Machine",
+            [2] = "Human Vs Human"
+        };
+        public string ChoosedGameMode { get; set; }
 
         public char GenerateRandomMachineKey()
         {
@@ -53,29 +59,32 @@ namespace RPSLS_GAME_6_0
             int chooseHelper = choose.Next(GameItems.Count);
             char randomKey = GameItems.Keys.ElementAt(chooseHelper);
             MachineKey = randomKey;
-
             return MachineKey;
         }
-        public char SetPlayerKey(Player player)
+        public char SetPlayerKey(Player player, Content content)
         {
             PlayerKey = player.ReadPlayerKeyFromTheConsole();
-            while (!GameItems.ContainsKey(PlayerKey))
+            while ((!GameItems.ContainsKey(PlayerKey)) && (!!GameMode.ContainsKey(PlayerKey)))
             {
-                ChoosedGameItemsKeysValidation();
+                content.WriteToTheConsole(content.UIHitValidKeyMessage);
+                ChoosedItemsKeysValidation();
                 PlayerKey = player.ReadPlayerKeyFromTheConsole();
             }
             return PlayerKey;
         }
 
-        public void ChoosedGameItemsKeysValidation()
-        {
-            if ((!GameItems.ContainsKey(MachineKey)) || (!GameItems.ContainsKey(PlayerKey)))
+        public void ChoosedItemsKeysValidation()
+        {            
+            foreach (KeyValuePair<char, string> gameItempair in GameItems)
             {
-                foreach (KeyValuePair<char, string> gameItempair in GameItems)
-                {
-                    Console.WriteLine(gameItempair.Key + " - " + gameItempair.Value + "\n");
-                }
+                Console.WriteLine(gameItempair.Key + " - " + gameItempair.Value + "\n");
             }
+
+            foreach (KeyValuePair<int, string> gameModepair in GameMode)
+            {
+                Console.WriteLine(gameModepair.Key + " - " + gameModepair.Value + "\n");
+            }
+
         }
         public Tuple<string, string> LoadCompareableItems()
         {
@@ -102,10 +111,15 @@ namespace RPSLS_GAME_6_0
             return Winner;
         }
 
-       
+        public string ChooseGameMode(Player player,Content content)
+        {
+            int gameModeKey;
+            SetPlayerKey(player,content);
+            gameModeKey = Convert.ToInt32(PlayerKey);
 
-       
+            ChoosedGameMode = GameMode[gameModeKey];
 
-       
+            return ChoosedGameMode;
+        }
     }
 }

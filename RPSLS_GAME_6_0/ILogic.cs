@@ -9,6 +9,8 @@ namespace RPSLS_GAME_6_0
     internal interface ILogic
     {
         Dictionary<char, string> GameItems { get; set; }
+        Dictionary<int, string> GameMode { get; set; }
+        string ChoosedGameMode { get; set; }
         char PlayerKey { get; set; }
         string[] ChoosedGameItems { get; set; }
         Tuple<string,string> ComperableItems { get; set; }
@@ -16,8 +18,9 @@ namespace RPSLS_GAME_6_0
         string Winner { get; set; }
         Tuple<string, string> LoadCompareableItems();
         string CompareableItemsValidator();
-        void ChoosedGameItemsKeysValidation();
-        char SetPlayerKey(Player player);
+        void ChoosedItemsKeysValidation();
+        char SetPlayerKey(Player player, Content content);
         string[] SetChoosedGameItems();
+        string ChooseGameMode(Player player, Content content);
     }
 }

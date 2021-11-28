@@ -6,14 +6,24 @@ using System.Threading.Tasks;
 
 namespace RPSLS_GAME_6_0
 {
-    internal class Game
+    internal class Game 
     {
-        public void Initialize(UIContent uIContent, Navigation navigation, Player player)
+        public void Initialize(UINavigation navigation,Content content, Player player, Logic logic)
         {
-            uIContent.WriteUIToTheConsole();
-            navigation.SetNavigationKey(player);
-            navigation.SetChoosedMenu();
-
+            content.WriteToTheConsole(content.UIWelcomeMessage + content.UINavigationMessage + content.UIWaitForInputMessage);
+            navigation.SetUINavigationKey(player, content);
+            navigation.Navigation();
+            if (navigation.ChoosedMenu == "Start the Game")
+            {
+                content.WriteToTheConsole(content.GameModeMessage + content.UIWaitForInputMessage);
+                logic.ChooseGameMode(player, content);
+                if (logic.ChoosedGameMode == "Human Vs Machine")
+                {
+                    content.WriteToTheConsole(content.GameAvailableItems + content.UIWaitForInputMessage);
+                }
+            }
         }
+
+        
     }
 }

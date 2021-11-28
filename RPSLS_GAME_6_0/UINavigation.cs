@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPSLS_GAME_6_0
 {
-    internal class Navigation : INavigation
+    internal class UINavigation : IUINavigation
     {
         public char NavigationKey { get; set; }
         public Dictionary<char, string> MenuItems { get; set; } = new Dictionary<char, string>
@@ -19,7 +19,7 @@ namespace RPSLS_GAME_6_0
         };
         public string ChoosedMenu { get; set; }
 
-        public void ChoosedMenuKeysValidation()
+        public void ChoosedUIMenuKeysValidation()
         {
             foreach (KeyValuePair<char, string> gameMenupair in MenuItems)
             {
@@ -27,24 +27,39 @@ namespace RPSLS_GAME_6_0
             }   
         }
 
-        public char SetNavigationKey(Player player)
+        public char SetUINavigationKey(Player player, Content content)
         {
             NavigationKey = player.ReadPlayerKeyFromTheConsole();
             while (!MenuItems.ContainsKey(NavigationKey))
             {
-                ChoosedMenuKeysValidation();
+                content.WriteToTheConsole(content.UIHitValidKeyMessage);
+                ChoosedUIMenuKeysValidation();
                 NavigationKey = player.ReadPlayerKeyFromTheConsole();
             }
 
             return NavigationKey;
         }
 
-        public string SetChoosedMenu()
+        public string SetChoosedUIMenu()
         {
             ChoosedMenu = MenuItems[NavigationKey];
 
             return ChoosedMenu;
         }
 
+        public void Navigation()
+        {
+            SetChoosedUIMenu();
+            switch (ChoosedMenu)
+            {
+                case "Start the Game":
+                    Console.Clear();
+                    break;
+                case "Quit the Game":
+                    Environment.Exit(0);
+                    break;
+                   
+            }
+        }
     }
 }

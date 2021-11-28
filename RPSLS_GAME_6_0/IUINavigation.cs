@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace RPSLS_GAME_6_0
 {
-    internal interface INavigation
+    internal interface IUINavigation
     {
         char NavigationKey { get; set;}
         Dictionary<char, string> MenuItems { get; set; }
         string ChoosedMenu { get; set; }
-        char SetNavigationKey(Player player);
-        void ChoosedMenuKeysValidation();
-        string SetChoosedMenu();
+        char SetUINavigationKey(Player player, Content content);
+        void ChoosedUIMenuKeysValidation();
+        string SetChoosedUIMenu();
+        void Navigation();
 
     }
 }
