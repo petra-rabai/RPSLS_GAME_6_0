@@ -17,8 +17,21 @@ namespace RPSLS_GAME_6_0
         private const string navigationMessage = "Hit the E key to start the game or hit the Q key to quit the game" + newLine;
         private const string waitForInputMessage = newLine + "Wait for user input: " + newLine;
         private const string hitValidKeyMessage = newLine + "Please hit a valid key: " + newLine;
-        private const string gameMode = "Choose your game mode: " + newLine;
-        private const string availableItems = "Choose an item: " + newLine + "Paper - P " + newLine + "Scissor - S" + newLine + "Rock - R" + newLine + "Lizard - L" + "Spock -V";
+        private const string gameMode = "Choose your game mode: "
+                                        + newLine
+                                        + "Hit the 1 key to start Human Vs Machine"
+                                        + newLine
+                                        + "Hit the 2 key to start Human Vs Human";
+        private const string availableItems = "Choose an item: "
+                                              + newLine
+                                              + "Paper - P "
+                                              + newLine
+                                              + "Scissor - S"
+                                              + newLine
+                                              + "Rock - R"
+                                              + newLine
+                                              + "Lizard - L"
+                                              + "Spock -V";
         private const string choosedGameModeMessage = "You choosed: " + newLine;
         private string uITitle = title;
         private string uIWelcomeMessage = welcomeMessage;
@@ -40,6 +53,7 @@ namespace RPSLS_GAME_6_0
         public void WriteToTheConsole(string content)
         {
             Console.Title = UITitle;
+            Console.Clear();
             Console.WriteLine(content);
         }
     }

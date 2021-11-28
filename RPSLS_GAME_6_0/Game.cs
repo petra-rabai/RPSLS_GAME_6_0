@@ -19,7 +19,13 @@ namespace RPSLS_GAME_6_0
                 logic.ChooseGameMode(player, content);
                 if (logic.ChoosedGameMode == "Human Vs Machine")
                 {
+                    content.WriteToTheConsole(content.ChoosedGameModeMessage + logic.ChoosedGameMode);
                     content.WriteToTheConsole(content.GameAvailableItems + content.UIWaitForInputMessage);
+                    logic.SetPlayerKey(player, content);
+                    logic.GenerateRandomMachineKey();
+                    logic.SetChoosedGameItems();
+                    logic.LoadCompareableItems();
+                    logic.CompareableItemsValidator();
                 }
             }
         }
