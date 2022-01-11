@@ -27,6 +27,15 @@ namespace RPSLS_GAME_6_0
                     logic.LoadCompareableItems();
                     logic.CompareableItemsValidator();
                 }
+                else if (logic.ChoosedGameMode == "Human Vs Human")
+                {
+                    content.WriteToTheConsole(content.ChoosedGameModeMessage + logic.ChoosedGameMode);
+                    // how many player want to play? - Content, palyer
+                    // store player numbers and id - player
+                    // add player id to a paramater to SetPlayerKey method - player
+                    content.WriteToTheConsole(content.GameAvailableItems + content.UIWaitForInputMessage);
+                    logic.SetPlayerKey(player, content);
+                }
             }
         }
 

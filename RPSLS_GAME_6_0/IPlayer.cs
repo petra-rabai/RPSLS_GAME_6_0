@@ -8,6 +8,7 @@ namespace RPSLS_GAME_6_0
 {
     internal interface IPlayer
     {
+        Dictionary<int,char> Humans { get; set; }
         char Key { get; set; }
         char ReadPlayerKeyFromTheConsole();
     }
