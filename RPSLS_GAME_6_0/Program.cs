@@ -21,7 +21,7 @@ namespace RPSLS_GAME_6_0
 
         }
 
-        private static void CreateGameIdentities(out Game game, out Logic logic, out Player player, out Content content, out UINavigation navigation)
+        public static void CreateGameIdentities(out Game game, out Logic logic, out Player player, out Content content, out UINavigation navigation)
         {
             game = new Game();
             logic = new Logic();

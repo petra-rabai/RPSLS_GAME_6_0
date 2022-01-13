@@ -48,8 +48,8 @@ namespace RPSLS_GAME_6_0
         public string Winner { get; set; }
         public Dictionary<int, string> GameMode { get; set; } = new Dictionary<int, string>
         {
-            [1] = "Human Vs Machine",
-            [2] = "Human Vs Human"
+           [49] = "Human Vs Machine",
+           [50] = "Human Vs Human"
         };
         public string ChoosedGameMode { get; set; }
 
@@ -114,9 +114,8 @@ namespace RPSLS_GAME_6_0
         public string ChooseGameMode(Player player,Content content)
         {
             int gameModeKey;
-            SetPlayerKey(player,content);
             gameModeKey = Convert.ToInt32(PlayerKey);
-
+            SetPlayerKey(player,content);
             ChoosedGameMode = GameMode[gameModeKey];
 
             return ChoosedGameMode;

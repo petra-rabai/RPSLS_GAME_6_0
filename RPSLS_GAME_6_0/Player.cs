@@ -14,7 +14,16 @@ namespace RPSLS_GAME_6_0
         public char ReadPlayerKeyFromTheConsole()
         {
             ConsoleKeyInfo hitKey = Console.ReadKey();
-            Key = Char.Parse(hitKey.Key.ToString());
+            ConsoleKey numericKey;
+            if ((hitKey.Key.ToString() == ConsoleKey.D1.ToString()) || (hitKey.Key.ToString() == ConsoleKey.D2.ToString()))
+            {
+                Key = hitKey.KeyChar;
+            }
+            else
+            {
+                Key = Char.Parse(hitKey.Key.ToString());
+            }
+            
 
             return Key;
         }
